@@ -1,0 +1,169 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Actualizar Usuario</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div style="display: flex; gap: 16px;">
+        <mat-form-field style="flex: 1;">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ingrese el nombre">
+          @if (form.get('nombre')?.hasError('required') && form.get('nombre')?.touched) {
+          <mat-error>El nombre es requerido</mat-error>
+          }
+          @if (form.get('nombre')?.hasError('maxlength')) {
+          <mat-error>Máximo 100 caracteres</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field style="flex: 1;">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" placeholder="Ingrese el apellido">
+          @if (form.get('apellido')?.hasError('required') && form.get('apellido')?.touched) {
+          <mat-error>El apellido es requerido</mat-error>
+          }
+          @if (form.get('apellido')?.hasError('maxlength')) {
+          <mat-error>Máximo 100 caracteres</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; gap: 16px;">
+        <mat-form-field style="flex: 1;">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput type="email" formControlName="correo" placeholder="ejemplo@correo.com">
+          @if (form.get('correo')?.hasError('required') && form.get('correo')?.touched) {
+          <mat-error>El correo es requerido</mat-error>
+          }
+          @if (form.get('correo')?.hasError('email')) {
+          <mat-error>Correo inválido</mat-error>
+          }
+          @if (form.get('correo')?.hasError('maxlength')) {
+          <mat-error>Máximo 100 caracteres</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field style="flex: 1;">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="telefono" placeholder="1234567890">
+          @if (form.get('telefono')?.hasError('required') && form.get('telefono')?.touched) {
+          <mat-error>El teléfono es requerido</mat-error>
+          }
+          @if (form.get('telefono')?.hasError('pattern')) {
+          <mat-error>Debe ser un número de 10 dígitos</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; gap: 16px;">
+        <mat-form-field style="flex: 1;">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput type="date" formControlName="fechaNacimiento">
+          @if (form.get('fechaNacimiento')?.hasError('required') && form.get('fechaNacimiento')?.touched) {
+          <mat-error>La fecha de nacimiento es requerida</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field style="flex: 1;">
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo">
+            <mat-option value="M">Masculino</mat-option>
+            <mat-option value="F">Femenino</mat-option>
+          </mat-select>
+          @if (form.get('sexo')?.hasError('required') && form.get('sexo')?.touched) {
+          <mat-error>El sexo es requerido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; gap: 16px;">
+        <mat-form-field style="flex: 1;">
+          <mat-label>Peso (kg)</mat-label>
+          <input matInput type="number" formControlName="peso" placeholder="70">
+          @if (form.get('peso')?.hasError('required') && form.get('peso')?.touched) {
+          <mat-error>El peso es requerido</mat-error>
+          }
+          @if (form.get('peso')?.hasError('min')) {
+          <mat-error>El peso mínimo es 1 kg</mat-error>
+          }
+          @if (form.get('peso')?.hasError('max')) {
+          <mat-error>El peso máximo es 500 kg</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field style="flex: 1;">
+          <mat-label>Altura (cm)</mat-label>
+          <input matInput type="number" formControlName="altura" placeholder="170">
+          @if (form.get('altura')?.hasError('required') && form.get('altura')?.touched) {
+          <mat-error>La altura es requerida</mat-error>
+          }
+          @if (form.get('altura')?.hasError('min')) {
+          <mat-error>La altura mínima es 30 cm</mat-error>
+          }
+          @if (form.get('altura')?.hasError('max')) {
+          <mat-error>La altura máxima es 300 cm</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; gap: 16px;">
+        <mat-form-field style="flex: 1;">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="Activo">Activo</mat-option>
+            <mat-option value="Inactivo">Inactivo</mat-option>
+            <mat-option value="Suspendido">Suspendido</mat-option>
+          </mat-select>
+          @if (form.get('status')?.hasError('required') && form.get('status')?.touched) {
+          <mat-error>El status es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field style="flex: 1;">
+          <mat-label>Último Acceso</mat-label>
+          <input matInput type="date" formControlName="ultimoAcceso">
+          @if (form.get('ultimoAcceso')?.hasError('required') && form.get('ultimoAcceso')?.touched) {
+          <mat-error>El último acceso es requerido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      @if (imagenPreview) {
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Foto Actual:</label>
+        <img [src]="imagenPreview" alt="Foto actual del usuario"
+          style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+      </div>
+      }
+
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 500;">
+          Nueva Foto (opcional):
+        </label>
+        <input type="file" accept="image/*" (change)="seleccionarArchivo($event)" style="display: block;">
+        @if (archivoSeleccionado) {
+        <p style="margin-top: 8px; color: #4caf50;">
+          Archivo seleccionado: {{ archivoSeleccionado.name }}
+        </p>
+        } @else {
+        <p style="margin-top: 8px; color: #757575; font-size: 14px;">
+          Si no selecciona una foto, se mantendrá la actual
+        </p>
+        }
+      </div>
+
+      <!-- Botones de Acción -->
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          Actualizar Usuario
+        </button>
+        <a mat-raised-button routerLink="/">
+          Cancelar
+        </a>
+      </mat-card-actions>
+
+    </form>
+  </mat-card-content>
+</mat-card>

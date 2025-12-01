@@ -1,0 +1,25 @@
+.foto{
+    width: 60px;
+    height: 80px;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.act{
+    background-color: #64fa00;
+    color: white;
+}
+
+.elim{
+    background-color: #fa0000;
+    color: white;
+}

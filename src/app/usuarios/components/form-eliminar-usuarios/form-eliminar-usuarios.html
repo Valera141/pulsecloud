@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Eliminar Usuario</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p style="color: #f44336; font-weight: 500; margin-bottom: 20px;">
+      ⚠️ ¿Está seguro que desea eliminar este usuario? Esta acción no se puede deshacer.
+    </p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+      <!-- Nombre -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" readonly>
+      </mat-form-field>
+
+      <!-- Apellido -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" readonly>
+      </mat-form-field>
+
+      <!-- Correo -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Correo Electrónico</mat-label>
+        <input matInput formControlName="correo" readonly>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="warn" type="submit">
+          Eliminar Usuario
+        </button>
+        <a mat-raised-button routerLink="/usuarios">
+          Cancelar
+        </a>
+      </mat-card-actions>
+
+    </form>
+  </mat-card-content>
+</mat-card>

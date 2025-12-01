@@ -1,0 +1,63 @@
+@if (!usuariosDataSource) {
+<img src="https://assets-v2.lottiefiles.com/a/91cc0ece-1150-11ee-b7cb-d3afb5c0c001/QNF78Uk4YE.gif" alt="loading" class="loading"
+  width="250">
+}
+@else if (usuariosDataSource.length === 0) {
+<p>No hay usuarios disponibles.</p>
+}
+@else{
+<br>
+<a routerLink="/usuario/crear" mat-flat-button>Agregar Usuario</a>
+<br>
+<table mat-table [dataSource]="usuariosDataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="foto">
+    <th mat-header-cell *matHeaderCellDef>Foto</th>
+    <td mat-cell *matCellDef="let usuario">
+      <img class="foto" src={{usuario.foto}}>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="idUsuario">
+    <th mat-header-cell *matHeaderCellDef> ID</th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.idUsuario}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef> Apellido </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.apellido}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="correo">
+    <th mat-header-cell *matHeaderCellDef> Correo </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.correo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="telefono">
+    <th mat-header-cell *matHeaderCellDef> Telefono </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.telefono}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.status}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let usuario">
+      <a [routerLink]="['/usuarios/info', usuario.idUsuario]" mat-flat-button>INFO</a>
+      <a [routerLink]="['/usuario/actualizar/', usuario.idUsuario]" mat-flat-button class="act">ACT</a>
+      <a [routerLink]="['/usuario/eliminar/', usuario.idUsuario]" mat-flat-button class="elim">ELIM</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+}

@@ -1,0 +1,146 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Agregar Usuario</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+        <div class="row">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Ingrese el nombre">
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('nombre')?.hasError('maxlength')">
+              Máximo 100 caracteres
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" placeholder="Ingrese el apellido">
+            <mat-error *ngIf="form.get('apellido')?.hasError('required')">
+              El apellido es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('apellido')?.hasError('maxlength')">
+              Máximo 100 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput type="email" formControlName="correo" placeholder="ejemplo@correo.com">
+            <mat-error *ngIf="form.get('correo')?.hasError('required')">
+              El correo es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('correo')?.hasError('email')">
+              Formato de correo inválido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" placeholder="1234567890">
+            <mat-error *ngIf="form.get('telefono')?.hasError('required')">
+              El teléfono es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('telefono')?.hasError('pattern')">
+              Debe ser un número de 10 dígitos
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput type="date" formControlName="fechaNacimiento">
+            <mat-error *ngIf="form.get('fechaNacimiento')?.hasError('required')">
+              La fecha de nacimiento es requerida
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Sexo</mat-label>
+            <mat-select formControlName="sexo">
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="F">Femenino</mat-option>
+              <mat-option value="O">Otro</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('sexo')?.hasError('required')">
+              El sexo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Peso (kg)</mat-label>
+            <input matInput type="number" formControlName="peso" placeholder="70">
+            <mat-error *ngIf="form.get('peso')?.hasError('required')">
+              El peso es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('peso')?.hasError('min') || form.get('peso')?.hasError('max')">
+              Debe estar entre 1 y 500 kg
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Altura (cm)</mat-label>
+            <input matInput type="number" formControlName="altura" placeholder="170">
+            <mat-error *ngIf="form.get('altura')?.hasError('required')">
+              La altura es requerida
+            </mat-error>
+            <mat-error *ngIf="form.get('altura')?.hasError('min') || form.get('altura')?.hasError('max')">
+              Debe estar entre 30 y 300 cm
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option value="Activo">Activo</mat-option>
+              <mat-option value="Inactivo">Inactivo</mat-option>
+              <mat-option value="Suspendido">Suspendido</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('status')?.hasError('required')">
+              El status es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Último Acceso</mat-label>
+            <input matInput type="date" formControlName="ultimoAcceso">
+            <mat-error *ngIf="form.get('ultimoAcceso')?.hasError('required')">
+              El último acceso es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="file-upload">
+          <label>Foto de Perfil:</label>
+          <input type="file" (change)="seleccionarArchivo($event)" accept="image/*" />
+          <span *ngIf="archivoSeleccionado" class="file-name">
+            {{ archivoSeleccionado.name }}
+          </span>
+        </div>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+            Guardar
+          </button>
+          <a mat-raised-button routerLink="/usuarios">
+            Cancelar
+          </a>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

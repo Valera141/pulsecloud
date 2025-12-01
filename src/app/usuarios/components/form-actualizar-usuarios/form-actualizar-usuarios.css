@@ -1,0 +1,38 @@
+mat-card {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+form > div {
+  margin-bottom: 8px;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="file"]:hover {
+  border-color: #3f51b5;
+}
